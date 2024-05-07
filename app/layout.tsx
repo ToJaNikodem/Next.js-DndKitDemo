@@ -1,4 +1,11 @@
+import NavigationBar from '@/components/NavigationBar'
 import './globals.css'
+import { Rubik } from 'next/font/google'
+
+const font = Rubik({
+  subsets: ['latin'],
+  weight: '400',
+})
 
 export default function RootLayout({
   children,
@@ -6,8 +13,11 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
-      <body>{children}</body>
+    <html lang="en" className={font.className}>
+      <body>
+        <NavigationBar />
+        {children}
+      </body>
     </html>
   )
 }
