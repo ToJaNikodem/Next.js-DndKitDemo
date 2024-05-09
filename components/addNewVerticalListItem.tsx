@@ -14,7 +14,13 @@ import {
 import { Input } from './ui/input'
 import { Label } from './ui/label'
 
-function AddNewVerticalListItem({ onClick }: { onClick: any }) {
+function AddNewVerticalListItem({
+  columnId,
+  addNewItemHandler,
+}: {
+  columnId: string
+  addNewItemHandler: (title: string, columnId?: string) => void
+}) {
   const [itemName, setItemName] = useState('')
   const [open, setOpen] = useState(false)
 
@@ -46,7 +52,7 @@ function AddNewVerticalListItem({ onClick }: { onClick: any }) {
             onClick={() => {
               setItemName('')
               setOpen(false)
-              onClick(itemName)
+              addNewItemHandler(itemName, columnId)
             }}
             type="submit"
           >

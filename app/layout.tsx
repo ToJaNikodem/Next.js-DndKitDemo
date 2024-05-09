@@ -1,4 +1,4 @@
-import NavigationBar from '@/components/NavigationBar'
+import NavigationBar from '@/components/navigationBar'
 import './globals.css'
 import { Rubik } from 'next/font/google'
 
