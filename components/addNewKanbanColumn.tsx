@@ -16,7 +16,7 @@ function AddNewKanbanColumn({
   addNewColumnHandler,
 }: {
   addNewColumnHandler: (title: string) => void
-}) {
+}): JSX.Element {
   const [columnName, setColumnName] = useState<string>('')
   const [open, setOpen] = useState<boolean>(false)
 
@@ -38,7 +38,9 @@ function AddNewKanbanColumn({
         <div>
           <Label htmlFor="name">Column name</Label>
           <Input
-            onChange={(e) => setColumnName(e.target.value)}
+            onChange={(e) => {
+              setColumnName(e.target.value)
+            }}
             value={columnName}
             id="name"
           />

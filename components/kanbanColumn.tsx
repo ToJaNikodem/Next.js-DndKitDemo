@@ -27,7 +27,7 @@ function KanbanColumn({
   removeItemHandler: (id: string) => void
   changeItemTitleHandler: (id: string, newTitle: string) => void
   addNewItemHandler: (columId: string, title: string) => void
-}) {
+}): JSX.Element {
   const [columnItems, setColumnItems] = useState<Item[]>(
     items.filter((item) => item.columnId === columnId)
   )
@@ -69,9 +69,9 @@ function KanbanColumn({
                   if (event.key !== 'Enter') return
                   setEditMode(false)
                 }}
-                onChange={(e) =>
+                onChange={(e) => {
                   changeColumnTitleHandler(columnId, e.target.value)
-                }
+                }}
                 autoFocus
                 onBlur={() => {
                   setEditMode(false)
@@ -81,7 +81,9 @@ function KanbanColumn({
               <>
                 <h2 className="p-3 text-2xl text-white">{title}</h2>
                 <button
-                  onClick={() => setEditMode(true)}
+                  onClick={() => {
+                    setEditMode(true)
+                  }}
                   className="text-gray-200"
                 >
                   <EditIcon />
@@ -94,7 +96,7 @@ function KanbanColumn({
           </div>
         </div>
         <div className="flex flex-col p-4">
-          <SortableContext items={columnItems!}>
+          <SortableContext items={columnItems}>
             {items.map((item) => {
               if (item.columnId === columnId) {
                 return (
@@ -116,7 +118,9 @@ function KanbanColumn({
         </div>
         <div className="absolute bottom-1 right-4 flex h-12 items-center justify-end">
           <button
-            onClick={() => removeColumnHandler(columnId)}
+            onClick={() => {
+              removeColumnHandler(columnId)
+            }}
             className="text-red-600"
           >
             <TrashIcon />

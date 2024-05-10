@@ -16,20 +16,20 @@ import {
 import { arrayMove } from '@dnd-kit/sortable'
 import { useState } from 'react'
 
-export type Item = {
+export interface Item {
   id: string
   title: string
   columnId: string
   key: number
 }
 
-type Column = {
+interface Column {
   id: string
   title: string
   key: number
 }
 
-function MultipleVerticalListsPage() {
+function MultipleVerticalListsPage(): JSX.Element {
   const [items, setItems] = useState<Item[]>([
     {
       id: 'i1',
@@ -81,7 +81,7 @@ function MultipleVerticalListsPage() {
     },
   ])
 
-  const [columns, setColumns] = useState<Column[]>([
+  const [columns] = useState<Column[]>([
     {
       id: 'c1',
       title: 'col 1',
@@ -100,33 +100,35 @@ function MultipleVerticalListsPage() {
   ])
 
   const [activeId, setActiveId] = useState<UniqueIdentifier | null>(null)
-  const [lastItemId, setLastItemId] = useState<number>(8)
+  const [lastItemId, setLastItemId] = useState<number>(9)
 
-  const getColumnId = (itemId: string) => {
+  const getColumnId = (itemId: string): string | null => {
     const item = items.find((item) => item.id === itemId)
     return item ? item.columnId : null
   }
 
-  const addNewItem = (title: string, columnId?: string) => {
-    if (!title || !columnId) {
-      return
-    }
-    const newItemId = 'i' + lastItemId + 1
+  const addNewItem = (title: string, columnId?: string): void => {
+    if (!title || !columnId) return
+
+    setLastItemId(lastItemId + 1)
+    console.log('last: ', lastItemId)
+
+    const newItemId = 'i' + lastItemId.toString()
+    console.log('new: ', newItemId)
     setItems((items) => [
       ...items,
       { id: newItemId.toString(), title, columnId, key: lastItemId + 1 },
     ])
-    setLastItemId(lastItemId + 1)
   }
 
-  const removeItem = (id: string) => {
+  const removeItem = (id: string): void => {
     if (!id) return
 
     const newItems = items.filter((item) => item.id !== id)
     setItems(newItems)
   }
 
-  const handleDragEnd = (event: DragEndEvent) => {
+  const handleDragEnd = (event: DragEndEvent): void => {
     setActiveId(null)
     const { active, over } = event
 
@@ -144,34 +146,38 @@ function MultipleVerticalListsPage() {
     }
   }
 
-  const handleDragStart = (event: DragStartEvent) => {
+  const handleDragStart = (event: DragStartEvent): void => {
     setActiveId(event.active.id)
   }
 
-  const handleDragOver = (event: DragOverEvent) => {
+  const handleDragOver = (event: DragOverEvent): void => {
     const { active, over } = event
 
     if (!over) return
 
     if (Array.from(over.id.toString())[0] === 'c') {
-      setItems((items) => {
-        const activeIndex = items.findIndex((item) => item.id === active.id)
-
-        items[activeIndex].columnId = over.id.toString()
-        return arrayMove(items, activeIndex, activeIndex)
-      })
-    }
-    if (Array.from(over.id.toString())[0] === 'i') {
-      const activeItemColumnId = getColumnId(active.id.toString())
-      const overItemColumnId = getColumnId(over.id.toString()) || ''
-
-      if (activeItemColumnId !== overItemColumnId) {
+      setTimeout(() => {
         setItems((items) => {
           const activeIndex = items.findIndex((item) => item.id === active.id)
 
-          items[activeIndex].columnId = overItemColumnId
+          items[activeIndex].columnId = over.id.toString()
           return arrayMove(items, activeIndex, activeIndex)
         })
+      }, 0)
+    }
+    if (Array.from(over.id.toString())[0] === 'i') {
+      const activeItemColumnId = getColumnId(active.id.toString())
+      const overItemColumnId = getColumnId(over.id.toString()) ?? ''
+
+      if (activeItemColumnId !== overItemColumnId) {
+        setTimeout(() => {
+          setItems((items) => {
+            const activeIndex = items.findIndex((item) => item.id === active.id)
+
+            items[activeIndex].columnId = overItemColumnId
+            return arrayMove(items, activeIndex, activeIndex)
+          })
+        }, 0)
       }
     }
   }

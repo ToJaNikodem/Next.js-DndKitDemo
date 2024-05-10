@@ -17,7 +17,7 @@ function VerticalList({
   items: Item[]
   addNewItemHandler: (title: string, columnId?: string) => void
   removeItemHandler: (id: string) => void
-}) {
+}): JSX.Element {
   const [columnItems, setColumnItems] = useState<Item[]>(
     items.filter((item) => item.columnId === columnId)
   )
@@ -34,7 +34,7 @@ function VerticalList({
       </div>
       <div className="flex flex-col p-4" ref={setNodeRef}>
         <SortableContext
-          items={columnItems!}
+          items={columnItems}
           strategy={verticalListSortingStrategy}
         >
           {items.map((item) => {

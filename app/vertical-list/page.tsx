@@ -21,7 +21,7 @@ interface Item {
   title: string
 }
 
-function VerticalListPage() {
+function VerticalListPage(): JSX.Element {
   const [lastItemId, setLastItemId] = useState<number>(4)
   const [items, setItems] = useState<Item[]>([
     {
@@ -40,31 +40,28 @@ function VerticalListPage() {
 
   const [activeId, setActiveId] = useState<UniqueIdentifier | null>(null)
 
-  const addNewItem = (title: string) => {
-    if (!title) {
-      return
-    }
+  const addNewItem = (title: string): void => {
+    if (!title) return
+
     setItems((items) => [...items, { id: (lastItemId + 1).toString(), title }])
     setLastItemId(lastItemId + 1)
-    console.log(lastItemId)
   }
 
-  const removeItem = (id: string) => {
-    if (!id) {
-      return
-    }
+  const removeItem = (id: string): void => {
+    if (!id) return
+
     const newItems = items.filter((item) => item.id !== id)
     setItems(newItems)
   }
 
-  const getItemPosition = (id: UniqueIdentifier) =>
+  const getItemPosition = (id: UniqueIdentifier): number =>
     items.findIndex((task) => task.id === id)
 
-  const handleDragStart = (event: DragStartEvent) => {
+  const handleDragStart = (event: DragStartEvent): void => {
     setActiveId(event.active.id)
   }
 
-  const handleDragEnd = (event: DragEndEvent) => {
+  const handleDragEnd = (event: DragEndEvent): void => {
     setActiveId(null)
 
     const { active, over } = event

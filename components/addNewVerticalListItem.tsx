@@ -20,7 +20,7 @@ function AddNewVerticalListItem({
 }: {
   columnId: string
   addNewItemHandler: (title: string, columnId?: string) => void
-}) {
+}): JSX.Element {
   const [itemName, setItemName] = useState('')
   const [open, setOpen] = useState(false)
 
@@ -44,7 +44,9 @@ function AddNewVerticalListItem({
         <div>
           <Label htmlFor="name">Item name</Label>
           <Input
-            onChange={(e) => setItemName(e.target.value)}
+            onChange={(e) => {
+              setItemName(e.target.value)
+            }}
             value={itemName}
             id="name"
           />

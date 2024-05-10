@@ -1,6 +1,6 @@
 import Link from 'next/link'
 
-function NavigationBar() {
+function NavigationBar(): JSX.Element {
   return (
     <nav className="m-auto flex h-12 w-fit flex-row items-center bg-slate-700 text-center text-lg text-white">
       <div className="w-64">

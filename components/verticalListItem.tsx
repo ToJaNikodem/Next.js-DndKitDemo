@@ -4,7 +4,7 @@ import { useSortable } from '@dnd-kit/sortable'
 import { CSS } from '@dnd-kit/utilities'
 import TrashIcon from './icons/trash'
 
-type Item = {
+interface Item {
   id: string
   title: string
 }
@@ -15,7 +15,7 @@ function VerticalListItem({
 }: {
   item: Item
   removeItemHandler: (id: string) => void
-}) {
+}): JSX.Element {
   const {
     attributes,
     listeners,
@@ -40,7 +40,9 @@ function VerticalListItem({
       >
         <p>{item.title}</p>
         <button
-          onClick={() => removeItemHandler(item.id)}
+          onClick={() => {
+            removeItemHandler(item.id)
+          }}
           className="text-red-600"
         >
           <TrashIcon />

@@ -18,7 +18,7 @@ function AddNewKanbanItem({
 }: {
   columnId: string
   addNewItemHandler: (columnId: string, title: string) => void
-}) {
+}): JSX.Element {
   const [itemName, setItemName] = useState<string>('')
   const [open, setOpen] = useState<boolean>(false)
 
@@ -41,7 +41,9 @@ function AddNewKanbanItem({
           <div>
             <Label htmlFor="name">Item name</Label>
             <Input
-              onChange={(e) => setItemName(e.target.value)}
+              onChange={(e) => {
+                setItemName(e.target.value)
+              }}
               value={itemName}
               id="name"
             />

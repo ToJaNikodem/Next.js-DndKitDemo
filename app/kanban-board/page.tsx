@@ -20,18 +20,18 @@ import {
 } from '@dnd-kit/sortable'
 import { useState } from 'react'
 
-type Column = {
+interface Column {
   id: string
   title: string
 }
 
-export type Item = {
+export interface Item {
   id: string
   title: string
   columnId: string
 }
 
-function KanbanBoardPage() {
+function KanbanBoardPage(): JSX.Element {
   const [columns, setColumns] = useState<Column[]>([
     {
       id: 'c1',
@@ -92,12 +92,12 @@ function KanbanBoardPage() {
     null
   )
 
-  const getColumnId = (itemId: string) => {
+  const getColumnId = (itemId: string): string | null => {
     const item = items.find((item) => item.id === itemId)
     return item ? item.columnId : null
   }
 
-  const changeItemTitle = (id: string, newTitle: string) => {
+  const changeItemTitle = (id: string, newTitle: string): void => {
     if (!id || !newTitle) return
 
     const newItems = items.map((item) => {
@@ -107,15 +107,15 @@ function KanbanBoardPage() {
     setItems(newItems)
   }
 
-  const addNewColumn = (title: string) => {
+  const addNewColumn = (title: string): void => {
     if (!title) return
 
-    const newColumnId = 'c' + lastColumnId + 1
-    setColumns((columns) => [...columns, { id: newColumnId, title }])
     setLastColumnId(lastColumnId + 1)
+    const newColumnId = 'c' + lastColumnId.toString()
+    setColumns((columns) => [...columns, { id: newColumnId, title }])
   }
 
-  const changeColumnTitle = (id: string, newTitle: string) => {
+  const changeColumnTitle = (id: string, newTitle: string): void => {
     if (!id || !newTitle) return
 
     const newColumns = columns.map((column) => {
@@ -125,31 +125,32 @@ function KanbanBoardPage() {
     setColumns(newColumns)
   }
 
-  const removeColumn = (id: string) => {
+  const removeColumn = (id: string): void => {
     if (!id) return
 
     const newColumns = columns.filter((column) => column.id !== id)
     setColumns(newColumns)
   }
 
-  const removeItem = (id: string) => {
+  const removeItem = (id: string): void => {
     if (!id) return
 
     const newItems = items.filter((item) => item.id !== id)
     setItems(newItems)
   }
 
-  const addNewItem = (columnId: string, title: string) => {
-    const newItemId = 'i' + lastItemId + 1
-    setItems((items) => [...items, { id: newItemId, columnId, title }])
+  const addNewItem = (columnId: string, title: string): void => {
     setLastItemId(lastItemId + 1)
+
+    const newItemId = 'i' + lastItemId.toString()
+    setItems((items) => [...items, { id: newItemId, columnId, title }])
   }
 
-  const handleDragStart = (event: DragStartEvent) => {
+  const handleDragStart = (event: DragStartEvent): void => {
     setActiveDragId(event.active.id)
   }
 
-  const handleDragOver = (event: DragOverEvent) => {
+  const handleDragOver = (event: DragOverEvent): void => {
     const { active, over } = event
     if (!over || active.id === over.id) return
 
@@ -158,31 +159,35 @@ function KanbanBoardPage() {
       Array.from(over.id.toString())[0] === 'i'
     ) {
       const activeItemColumnId = getColumnId(active.id.toString())
-      const overItemColumnId = getColumnId(over.id.toString()) || ''
+      const overItemColumnId = getColumnId(over.id.toString()) ?? ''
 
       if (activeItemColumnId !== overItemColumnId) {
-        setItems((items) => {
-          const activeIndex = items.findIndex((item) => item.id === active.id)
+        setTimeout(() => {
+          setItems((items) => {
+            const activeIndex = items.findIndex((item) => item.id === active.id)
 
-          items[activeIndex].columnId = overItemColumnId
-          return arrayMove(items, activeIndex, activeIndex)
-        })
+            items[activeIndex].columnId = overItemColumnId
+            return arrayMove(items, activeIndex, activeIndex)
+          })
+        }, 0)
       }
     }
     if (
       Array.from(active.id.toString())[0] === 'i' &&
       Array.from(over.id.toString())[0] === 'c'
     ) {
-      setItems((items) => {
-        const activeIndex = items.findIndex((item) => item.id === active.id)
+      setTimeout(() => {
+        setItems((items) => {
+          const activeIndex = items.findIndex((item) => item.id === active.id)
 
-        items[activeIndex].columnId = over.id.toString()
-        return arrayMove(items, activeIndex, activeIndex)
-      })
+          items[activeIndex].columnId = over.id.toString()
+          return arrayMove(items, activeIndex, activeIndex)
+        })
+      }, 0)
     }
   }
 
-  const handleDragEnd = (event: DragEndEvent) => {
+  const handleDragEnd = (event: DragEndEvent): void => {
     setActiveDragId(null)
     const { active, over } = event
     if (!over || active.id === over.id) return

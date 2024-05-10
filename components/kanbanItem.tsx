@@ -24,7 +24,7 @@ function KanbanItem({
   isDragOverlay?: boolean
   changeItemTitleHandler: (itemId: string, newTitle: string) => void
   removeItemHandler: (itemId: string) => void
-}) {
+}): JSX.Element {
   const [editMode, setEditMode] = useState<boolean>(false)
 
   const {
@@ -56,7 +56,9 @@ function KanbanItem({
                 if (event.key !== 'Enter') return
                 setEditMode(false)
               }}
-              onChange={(e) => changeItemTitleHandler(itemId, e.target.value)}
+              onChange={(e) => {
+                changeItemTitleHandler(itemId, e.target.value)
+              }}
               autoFocus
               onBlur={() => {
                 setEditMode(false)
@@ -72,11 +74,19 @@ function KanbanItem({
                     </div>
                   </DropdownMenuTrigger>
                   <DropdownMenuContent>
-                    <DropdownMenuItem onClick={() => setEditMode(true)}>
+                    <DropdownMenuItem
+                      onClick={() => {
+                        setEditMode(true)
+                      }}
+                    >
                       <span>Edit title</span>
                     </DropdownMenuItem>
                     <DropdownMenuSeparator />
-                    <DropdownMenuItem onClick={() => removeItemHandler(itemId)}>
+                    <DropdownMenuItem
+                      onClick={() => {
+                        removeItemHandler(itemId)
+                      }}
+                    >
                       <span className="text-red-600">Remove item</span>
                     </DropdownMenuItem>
                   </DropdownMenuContent>
