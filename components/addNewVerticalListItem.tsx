@@ -26,11 +26,13 @@ function AddNewVerticalListItem({
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger>
-        <div className={buttonVariants({ variant: 'default' })}>
-          Add new item
-        </div>
-      </DialogTrigger>
+      <div className="m-auto">
+        <DialogTrigger>
+          <div className={buttonVariants({ variant: 'default' })}>
+            Add new item
+          </div>
+        </DialogTrigger>
+      </div>
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Add new item</DialogTitle>

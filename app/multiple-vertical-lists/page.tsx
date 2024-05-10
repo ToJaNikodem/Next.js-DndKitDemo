@@ -114,15 +114,14 @@ function MultipleVerticalListsPage() {
     const newItemId = 'i' + lastItemId + 1
     setItems((items) => [
       ...items,
-      { id: (newItemId + 1).toString(), title, columnId, key: lastItemId + 1 },
+      { id: newItemId.toString(), title, columnId, key: lastItemId + 1 },
     ])
     setLastItemId(lastItemId + 1)
   }
 
   const removeItem = (id: string) => {
-    if (!id) {
-      return
-    }
+    if (!id) return
+
     const newItems = items.filter((item) => item.id !== id)
     setItems(newItems)
   }

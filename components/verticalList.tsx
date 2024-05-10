@@ -48,11 +48,11 @@ function VerticalList({
               )
             }
           })}
-          <AddNewVerticalListItem
-            addNewItemHandler={addNewItemHandler}
-            columnId={columnId}
-          />
         </SortableContext>
+        <AddNewVerticalListItem
+          addNewItemHandler={addNewItemHandler}
+          columnId={columnId}
+        />
       </div>
     </div>
   )
