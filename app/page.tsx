@@ -1,6 +1,6 @@
 function HomePage() {
   return (
-    <main className="flex items-center justify-center mt-48">
+    <main className="mt-48 flex items-center justify-center">
       <div className=" text-9xl">Dnd kit demo</div>
     </main>
   )

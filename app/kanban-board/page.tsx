@@ -215,7 +215,7 @@ function KanbanBoardPage() {
   }
 
   return (
-    <main className="flex flex-row gap-6 pt-16 justify-center overflow-x-auto">
+    <main className="flex flex-row justify-center gap-6 overflow-x-auto pt-16">
       <DndContext
         collisionDetection={rectIntersection}
         onDragStart={handleDragStart}
@@ -244,10 +244,10 @@ function KanbanBoardPage() {
         {activeDragId ? (
           <DragOverlay>
             {Array.from(activeDragId.toString())[0] === 'c' ? (
-              <div className="bg-white rounded-md min-h-16 w-96">
-                <div className="bg-neutral-900 rounded-t-md flex flex-row justify-between items-center">
-                  <div className="flex flex-row h-14 items-center">
-                    <h2 className="text-white p-3 text-2xl">
+              <div className="min-h-16 w-96 rounded-md bg-white">
+                <div className="flex flex-row items-center justify-between rounded-t-md bg-neutral-900">
+                  <div className="flex h-14 flex-row items-center">
+                    <h2 className="p-3 text-2xl text-white">
                       {
                         columns[
                           columns.findIndex(
@@ -277,9 +277,9 @@ function KanbanBoardPage() {
                 </div>
               </div>
             ) : (
-              <div className="flex flex-row justify-between items-center h-16 bg-gray-300 rounded-md my-2">
-                <div className="h-16 flex flex-row gap-1 items-center">
-                  <div className=" scale-90 ml-2 mr-1 w-6 h-6"></div>
+              <div className="my-2 flex h-16 flex-row items-center justify-between rounded-md bg-gray-300">
+                <div className="flex h-16 flex-row items-center gap-1">
+                  <div className=" ml-2 mr-1 h-6 w-6 scale-90"></div>
                   <h3 className="text-lg">
                     {
                       items[items.findIndex((item) => item.id === activeDragId)]

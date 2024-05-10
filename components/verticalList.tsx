@@ -28,9 +28,9 @@ function VerticalList({
 
   const { setNodeRef } = useDroppable({ id: columnId })
   return (
-    <div className="bg-white rounded-md min-h-16 w-96">
-      <div className="bg-neutral-900 rounded-t-md flex flex-row justify-between items-center">
-        <h2 className="text-white p-3 text-2xl">{title}</h2>
+    <div className="min-h-16 w-96 rounded-md bg-white">
+      <div className="flex flex-row items-center justify-between rounded-t-md bg-neutral-900">
+        <h2 className="p-3 text-2xl text-white">{title}</h2>
       </div>
       <div className="flex flex-col p-4" ref={setNodeRef}>
         <SortableContext

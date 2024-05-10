@@ -93,9 +93,9 @@ function VerticalListPage() {
 
   return (
     <main>
-      <div className="m-auto mt-16 w-96 bg-white rounded-md">
-        <div className="bg-neutral-900 rounded-t-md">
-          <h2 className="text-white p-3 text-2xl">Vertical list</h2>
+      <div className="m-auto mt-16 w-96 rounded-md bg-white">
+        <div className="rounded-t-md bg-neutral-900">
+          <h2 className="p-3 text-2xl text-white">Vertical list</h2>
         </div>
         <div className="flex flex-col p-4">
           <DndContext
@@ -115,7 +115,7 @@ function VerticalListPage() {
             </SortableContext>
             {activeId ? (
               <DragOverlay>
-                <div className="bg-gray-200 p-4 mb-3 rounded-md text-lg flex flex-row justify-between">
+                <div className="mb-3 flex flex-row justify-between rounded-md bg-gray-200 p-4 text-lg">
                   <p>
                     {
                       items[items.findIndex((item) => item.id === activeId)]
@@ -126,7 +126,7 @@ function VerticalListPage() {
               </DragOverlay>
             ) : null}
           </DndContext>
-          <div className="flex justify-center mt-2">
+          <div className="mt-2 flex justify-center">
             <AddNewVerticalListItem
               addNewItemHandler={addNewItem}
               columnId=""

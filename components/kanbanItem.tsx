@@ -43,11 +43,11 @@ function KanbanItem({
   if (!isDragging) {
     return (
       <div
-        className="flex flex-row justify-between items-center h-16 bg-gray-200 rounded-md my-2"
+        className="my-2 flex h-16 flex-row items-center justify-between rounded-md bg-gray-200"
         ref={setNodeRef}
         style={style}
       >
-        <div className="h-16 flex flex-row gap-1 items-center">
+        <div className="flex h-16 flex-row items-center gap-1">
           {editMode ? (
             <Input
               value={title}
@@ -67,7 +67,7 @@ function KanbanItem({
               {!isDragOverlay ? (
                 <DropdownMenu>
                   <DropdownMenuTrigger>
-                    <div className=" scale-90 ml-2 mr-1">
+                    <div className=" ml-2 mr-1 scale-90">
                       <EditIcon />
                     </div>
                   </DropdownMenuTrigger>
@@ -82,7 +82,7 @@ function KanbanItem({
                   </DropdownMenuContent>
                 </DropdownMenu>
               ) : (
-                <div className=" scale-90 ml-2 mr-1 w-6 h-6"></div>
+                <div className=" ml-2 mr-1 h-6 w-6 scale-90"></div>
               )}
               <h3 className="text-lg">{title}</h3>
             </>
@@ -96,7 +96,7 @@ function KanbanItem({
   } else {
     return (
       <div
-        className="flex flex-row justify-between items-center h-16 bg-gray-200 rounded-md my-2 border-2 border-black opacity-20"
+        className="my-2 flex h-16 flex-row items-center justify-between rounded-md border-2 border-black bg-gray-200 opacity-20"
         ref={setNodeRef}
         style={style}
       ></div>

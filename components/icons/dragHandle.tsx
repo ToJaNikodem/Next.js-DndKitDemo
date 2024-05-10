@@ -2,7 +2,7 @@ function DragHandleIcon({ color, scale }: { color: string; scale?: string }) {
   return (
     <div
       className={
-        'flex flex-row flex-wrap gap-1 w-5 h-7 justify-between mr-4 p-1 ' +
+        'mr-4 flex h-7 w-5 flex-row flex-wrap justify-between gap-1 p-1 ' +
         scale
       }
     >

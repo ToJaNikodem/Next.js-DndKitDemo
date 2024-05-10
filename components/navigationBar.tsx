@@ -2,7 +2,7 @@ import Link from 'next/link'
 
 function NavigationBar() {
   return (
-    <nav className="flex flex-row h-12 bg-slate-700 text-white text-lg text-center items-center m-auto w-fit">
+    <nav className="m-auto flex h-12 w-fit flex-row items-center bg-slate-700 text-center text-lg text-white">
       <div className="w-64">
         <Link href="/">Home</Link>
       </div>

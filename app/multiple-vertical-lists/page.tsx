@@ -185,7 +185,7 @@ function MultipleVerticalListsPage() {
   )
 
   return (
-    <main className="flex flex-row gap-6 pt-16 justify-center">
+    <main className="flex flex-row justify-center gap-6 pt-16">
       <DndContext
         onDragStart={handleDragStart}
         onDragEnd={handleDragEnd}
@@ -205,7 +205,7 @@ function MultipleVerticalListsPage() {
         ))}
         {activeId ? (
           <DragOverlay>
-            <div className="bg-gray-200 p-4 mb-3 rounded-md text-lg flex flex-row justify-between">
+            <div className="mb-3 flex flex-row justify-between rounded-md bg-gray-200 p-4 text-lg">
               <p>
                 {items[items.findIndex((item) => item.id === activeId)].title}
               </p>

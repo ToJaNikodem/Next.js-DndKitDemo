@@ -23,7 +23,7 @@ function AddNewKanbanItem({
   const [open, setOpen] = useState<boolean>(false)
 
   return (
-    <div className="mt-2 m-auto">
+    <div className="m-auto mt-2">
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger>
           <div className={buttonVariants({ variant: 'default' })}>

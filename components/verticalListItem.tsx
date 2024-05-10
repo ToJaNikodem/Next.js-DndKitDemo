@@ -36,7 +36,7 @@ function VerticalListItem({
         {...attributes}
         {...listeners}
         ref={setNodeRef}
-        className="bg-gray-200 p-4 mb-3 rounded-md text-lg flex flex-row justify-between"
+        className="mb-3 flex flex-row justify-between rounded-md bg-gray-200 p-4 text-lg"
       >
         <p>{item.title}</p>
         <button
@@ -54,7 +54,7 @@ function VerticalListItem({
         {...attributes}
         {...listeners}
         ref={setNodeRef}
-        className="bg-gray-100 p-4 mb-3 rounded-md text-lg flex flex-row justify-between text-gray-100 border-2 border-black"
+        className="mb-3 flex flex-row justify-between rounded-md border-2 border-black bg-gray-100 p-4 text-lg text-gray-100"
       >
         <p>{item.title}</p>
       </div>

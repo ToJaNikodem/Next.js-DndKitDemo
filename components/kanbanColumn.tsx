@@ -55,12 +55,12 @@ function KanbanColumn({
   if (!isDragging) {
     return (
       <div
-        className="bg-white rounded-md min-h-16 w-96 relative"
+        className="relative min-h-16 w-96 rounded-md bg-white"
         ref={setNodeRef}
         style={style}
       >
-        <div className="bg-neutral-900 rounded-t-md flex flex-row justify-between items-center">
-          <div className="flex flex-row h-14 items-center">
+        <div className="flex flex-row items-center justify-between rounded-t-md bg-neutral-900">
+          <div className="flex h-14 flex-row items-center">
             {editMode ? (
               <Input
                 value={title}
@@ -79,7 +79,7 @@ function KanbanColumn({
               />
             ) : (
               <>
-                <h2 className="text-white p-3 text-2xl">{title}</h2>
+                <h2 className="p-3 text-2xl text-white">{title}</h2>
                 <button
                   onClick={() => setEditMode(true)}
                   className="text-gray-200"
@@ -114,7 +114,7 @@ function KanbanColumn({
             addNewItemHandler={addNewItemHandler}
           />
         </div>
-        <div className="h-12 flex items-center justify-end absolute right-4 bottom-1">
+        <div className="absolute bottom-1 right-4 flex h-12 items-center justify-end">
           <button
             onClick={() => removeColumnHandler(columnId)}
             className="text-red-600"
@@ -127,7 +127,7 @@ function KanbanColumn({
   } else {
     return (
       <div
-        className="bg-white rounded-md min-h-16 w-96 border-black border-2 opacity-15"
+        className="min-h-16 w-96 rounded-md border-2 border-black bg-white opacity-15"
         ref={setNodeRef}
         style={style}
       ></div>
